@@ -1,0 +1,281 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Korean Interview — koreanDesk</title>
+<link rel="icon" href="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRA28RjoJhcy9T0HowjOkF73gGNR3p-E852Bz0-pYeG7w&s=10">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Sora:wght@600;700;800&display=swap" rel="stylesheet">
+<style>
+:root{
+  --stroke:rgba(255,255,255,.10);
+  --stroke2:rgba(255,255,255,.20);
+  --txt:#f2f5ff; --mut:#9aa4c8; --mut2:#6d779b;
+  --pri:#7c5cff; --pri2:#a855f7; --acc:#22d3ee; --ok:#34d399;
+  --ease:cubic-bezier(.22,1,.36,1);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{
+  font-family:'Inter',system-ui,-apple-system,'Segoe UI',sans-serif;
+  background:#070a16;color:var(--txt);min-height:100vh;
+  overflow-x:hidden;-webkit-font-smoothing:antialiased;
+}
+h1,h2,h3{font-family:'Sora','Inter',sans-serif}
+button{font-family:inherit;cursor:pointer;border:0;background:none;color:inherit;
+  transition:transform .2s var(--ease),box-shadow .25s var(--ease),border-color .2s,opacity .2s}
+::selection{background:rgba(124,92,255,.4)}
+
+.bg{position:fixed;inset:0;z-index:-2;background:
+  radial-gradient(1100px 620px at 12% -8%,#1d2350 0%,transparent 62%),
+  radial-gradient(900px 520px at 88% 8%,#3a1d5e 0%,transparent 60%),
+  radial-gradient(900px 700px at 50% 110%,#0d3a52 0%,transparent 60%),
+  linear-gradient(180deg,#0b1020,#070a16)}
+.orb{position:fixed;border-radius:50%;filter:blur(90px);opacity:.5;z-index:-1;pointer-events:none}
+.orb.a{width:460px;height:460px;background:radial-gradient(circle,#7c5cff,transparent 70%);top:-140px;left:-120px;animation:d1 26s ease-in-out infinite}
+.orb.b{width:400px;height:400px;background:radial-gradient(circle,#22d3ee,transparent 70%);bottom:-160px;right:-100px;animation:d2 32s ease-in-out infinite}
+.orb.c{width:340px;height:340px;background:radial-gradient(circle,#a855f7,transparent 70%);top:40%;left:55%;animation:d3 38s ease-in-out infinite;opacity:.3}
+@keyframes d1{50%{transform:translate3d(90px,70px,0) scale(1.15)}}
+@keyframes d2{50%{transform:translate3d(-110px,-60px,0) scale(1.1)}}
+@keyframes d3{50%{transform:translate3d(-80px,60px,0) scale(.85)}}
+.grain{position:fixed;inset:0;z-index:-1;pointer-events:none;opacity:.035;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")}
+
+.shell{max-width:1000px;margin:0 auto;padding:26px 20px 60px}
+.topbar{display:flex;align-items:center;gap:16px;flex-wrap:wrap;margin-bottom:22px}
+.logo{display:flex;align-items:center;gap:12px;margin-right:auto}
+.mark{width:46px;height:46px;border-radius:13px;display:grid;place-items:center;overflow:hidden;flex:0 0 46px;
+  background:linear-gradient(140deg,var(--pri),var(--pri2) 55%,var(--acc));
+  box-shadow:0 10px 26px -8px rgba(124,92,255,.85),inset 0 1px 0 rgba(255,255,255,.4)}
+.mark img{width:100%;height:100%;object-fit:cover;display:block}
+.logo h1{font-size:19px;font-weight:800;letter-spacing:-.4px;line-height:1.1}
+.logo p{font-size:11px;color:var(--mut2);letter-spacing:1.6px;text-transform:uppercase;font-weight:600}
+.pill{display:inline-flex;align-items:center;gap:7px;height:34px;padding:0 14px;border-radius:999px;
+  background:rgba(255,255,255,.05);border:1px solid var(--stroke);backdrop-filter:blur(14px);
+  font-size:12.5px;font-weight:600;color:var(--mut);white-space:nowrap}
+.pill b{color:var(--txt);font-weight:700}
+.dot{width:7px;height:7px;border-radius:50%;background:var(--ok);box-shadow:0 0 10px var(--ok);animation:pl 2s infinite}
+@keyframes pl{50%{opacity:.35;transform:scale(.8)}}
+
+.card{background:linear-gradient(180deg,rgba(255,255,255,.055),rgba(255,255,255,.022));
+  border:1px solid var(--stroke);border-radius:22px;backdrop-filter:blur(26px);
+  box-shadow:0 24px 60px -18px rgba(0,0,0,.75);padding:26px;position:relative;overflow:hidden;
+  animation:pg .5s var(--ease)}
+@keyframes pg{from{opacity:0;transform:translateY(14px) scale(.985)}to{opacity:1;transform:none}}
+.card::before{content:'';position:absolute;inset:0 0 auto;height:1px;
+  background:linear-gradient(90deg,transparent,rgba(255,255,255,.35),transparent)}
+.card-h{display:flex;align-items:center;gap:12px;margin-bottom:20px;flex-wrap:wrap}
+.card-h h2{font-size:12px;font-weight:700;letter-spacing:2.2px;text-transform:uppercase;color:var(--mut2)}
+.card-h .bar{width:4px;height:16px;border-radius:2px;background:linear-gradient(var(--pri),var(--acc))}
+.card-h .sp{margin-left:auto;display:flex;gap:8px;flex-wrap:wrap}
+
+.btn{position:relative;display:inline-flex;align-items:center;justify-content:center;gap:9px;
+  height:46px;padding:0 22px;border-radius:13px;font-size:14px;font-weight:650;
+  background:rgba(255,255,255,.08);border:1px solid var(--stroke2);
+  box-shadow:0 1px 2px rgba(0,0,0,.4);overflow:hidden}
+.btn::after{content:'';position:absolute;inset:0;
+  background:linear-gradient(120deg,transparent 20%,rgba(255,255,255,.28) 50%,transparent 80%);
+  transform:translateX(-130%);transition:transform .7s var(--ease)}
+.btn:hover:not(:disabled)::after{transform:translateX(130%)}
+.btn:hover:not(:disabled){transform:translateY(-2px);border-color:rgba(255,255,255,.34);box-shadow:0 12px 26px -10px #000}
+.btn:active:not(:disabled){transform:translateY(0) scale(.98)}
+.btn:disabled{opacity:.32;cursor:not-allowed}
+.btn:focus-visible{outline:2px solid var(--acc);outline-offset:3px}
+.btn.hero{height:58px;padding:0 34px;font-size:16px;font-weight:750;border-radius:16px;
+  background:linear-gradient(135deg,var(--pri),var(--pri2) 52%,#6366f1);border-color:rgba(255,255,255,.22);
+  box-shadow:0 16px 40px -12px rgba(124,92,255,.95),inset 0 1px 0 rgba(255,255,255,.35);
+  animation:glow 3.2s ease-in-out infinite}
+@keyframes glow{50%{box-shadow:0 16px 44px -12px rgba(124,92,255,1),0 0 0 10px rgba(124,92,255,0),inset 0 1px 0 rgba(255,255,255,.35)}}
+.btn.sm{height:36px;padding:0 14px;font-size:12.5px;border-radius:10px;gap:6px}
+.btn .ico{font-size:16px;line-height:1}
+
+.qgate{text-align:center;padding:60px 24px;display:flex;flex-direction:column;align-items:center}
+.qgate-e{width:76px;height:76px;margin-bottom:18px;border-radius:24px;display:grid;place-items:center;
+  background:linear-gradient(140deg,rgba(124,92,255,.32),rgba(34,211,238,.2));
+  border:1px solid rgba(255,255,255,.16);box-shadow:0 16px 38px -16px rgba(124,92,255,.9);
+  animation:fl 3.4s ease-in-out infinite}
+.qgate-e svg{width:34px;height:34px;fill:none;stroke:#fff;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+@keyframes fl{50%{transform:translateY(-9px)}}
+.qgate h3{font-size:clamp(22px,3.4vw,30px);font-weight:800;letter-spacing:-.6px;
+  background:linear-gradient(180deg,#fff,#c3cbe8);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
+.qgate p{font-size:14.5px;color:var(--mut);margin:10px 0 26px;line-height:1.7}
+.qgate-note{margin-top:24px !important;font-size:12.5px !important;color:var(--mut2) !important;max-width:48ch}
+.qgate-note b{color:var(--mut);font-weight:650}
+
+.qstage{text-align:center;padding:56px 20px 40px;min-height:360px;display:flex;flex-direction:column;justify-content:center;align-items:center}
+.qtext{font-size:clamp(26px,5vw,50px);font-weight:800;line-height:1.16;letter-spacing:-1.4px;max-width:20ch;
+  background:linear-gradient(180deg,#fff,#c3cbe8);-webkit-background-clip:text;background-clip:text;
+  -webkit-text-fill-color:transparent;animation:qin .6s var(--ease) both}
+@keyframes qin{from{opacity:0;transform:translateY(22px) scale(.96);filter:blur(6px)}to{opacity:1;transform:none;filter:none}}
+.qwave{position:relative;width:min(100%,440px);height:34px;margin:30px auto 0;border-radius:10px;overflow:hidden;
+  background:rgba(255,255,255,.03);border:1px solid var(--stroke);display:flex;align-items:flex-end;gap:2px;padding:0 5px}
+.qwave i{flex:1;border-radius:3px 3px 0 0;background:linear-gradient(180deg,var(--acc),var(--pri));
+  height:12%;opacity:.2;transition:opacity .12s linear}
+.qwave i.on{opacity:1}
+.qbtns{margin-top:32px;display:flex;gap:12px;justify-content:center;flex-wrap:wrap}
+.hint{margin-top:28px;font-size:12px;color:var(--mut2)}
+kbd{background:rgba(255,255,255,.09);border:1px solid var(--stroke2);border-bottom-width:2px;border-radius:6px;padding:2px 7px;font:inherit;font-size:11px;font-weight:600}
+
+.qedit{margin-top:24px;width:min(100%,440px);font:inherit;font-size:14px;font-weight:600;color:var(--txt);
+  background:rgba(255,255,255,.04);border:1px solid var(--stroke);border-radius:11px;padding:10px 14px;
+  text-align:center;transition:.2s}
+.qedit:hover{border-color:var(--stroke2);background:rgba(255,255,255,.06)}
+.qedit:focus{outline:none;border-color:var(--pri);background:rgba(124,92,255,.12);box-shadow:0 0 0 3px rgba(124,92,255,.18)}
+.qedit-lbl{font-size:10.5px;letter-spacing:1.6px;text-transform:uppercase;color:var(--mut2);font-weight:700;margin-top:28px}
+
+.tip{font-size:12px;color:var(--mut2);line-height:1.65;margin-top:22px;padding-top:18px;
+  border-top:1px solid rgba(255,255,255,.07)}
+.tip b{color:var(--mut);font-weight:650}
+</style>
+</head>
+<body>
+<div class="bg"></div><div class="orb a"></div><div class="orb b"></div><div class="orb c"></div><div class="grain"></div>
+
+<div class="shell">
+  <div class="topbar">
+    <div class="logo">
+      <div class="mark">
+        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRA28RjoJhcy9T0HowjOkF73gGNR3p-E852Bz0-pYeG7w&s=10" alt="koreanDesk">
+      </div>
+      <div><h1>koreanDesk</h1><p>Korean Interview</p></div>
+    </div>
+    <span class="pill"><span class="dot"></span> <b id="pCount">0</b> questions</span>
+  </div>
+
+  <div class="card">
+    <div class="card-h"><i class="bar"></i><h2>Interview Session</h2>
+      <div class="sp">
+        <button class="btn sm" id="resetBtn">Reset Text</button>
+      </div>
+    </div>
+
+    <div class="qgate" id="gate">
+      <div class="qgate-e">
+        <svg viewBox="0 0 24 24"><path d="M4 9v6h4l5 4V5L8 9H4z"/><path d="M16.5 8.5a5 5 0 0 1 0 7"/><path d="M19.5 5.5a9 9 0 0 1 0 13"/></svg>
+      </div>
+      <h3>Ready for your interview?</h3>
+      <p id="gateInfo">Loading questions&hellip;</p>
+      <button class="btn hero" id="startBtn"><span class="ico">&#9654;</span> Start Interview</button>
+      <p class="qgate-note">Every question is picked at random. Missed one? Press <b>Repeat</b> to hear it again.</p>
+    </div>
+
+    <div class="qstage" id="stage" style="display:none">
+      <div class="qtext" id="qText">&mdash;</div>
+      <div class="qwave" id="wave"></div>
+      <div class="qbtns">
+        <button class="btn" id="replayBtn"><span class="ico">&#8635;</span> Repeat</button>
+        <button class="btn hero" id="nextBtn"><span class="ico">&#9889;</span> Next Question</button>
+      </div>
+      <div class="qedit-lbl">Question text &mdash; saves as you type</div>
+      <input class="qedit" id="qEdit" placeholder="Type the question&hellip;" />
+      <div class="hint">Press <kbd>Space</kbd> or <kbd>&rarr;</kbd> for the next question &nbsp;&middot;&nbsp; <kbd>R</kbd> to repeat the voice</div>
+    </div>
+
+    <div class="tip">Audio plays directly from this folder. Press <b>Reset Text</b> to restore the default question names.</div>
+  </div>
+</div>
+
+<audio id="audio" preload="auto"></audio>
+
+<script>
+/* ============ AUDIO LIBRARY - read straight from this folder ============ */
+const FILES = ["ElevenLabs_2026-09-29T07_33_09_Hyuk - Encourging and Clear_pvc_sp100_s100_sb99_v4.mp3","ElevenLabs_2026-09-29T07_33_26_Hyuk - Encourging and Clear_pvc_sp100_s100_sb99_v4.mp3","ElevenLabs_2026-09-29T07_33_47_Hyuk - Encourging and Clear_pvc_sp100_s100_sb99_v4.mp3","ElevenLabs_2026-09-29T07_34_04_Hyuk - Encourging and Clear_pvc_sp100_s100_sb99_v4.mp3","ElevenLabs_2026-09-29T07_34_18_Hyuk - Encourging and Clear_pvc_sp100_s100_sb99_v4.mp3","ElevenLabs_2026-09-29T07_34_34_Hyuk - Encourging and Clear_pvc_sp100_s100_sb99_v4.mp3","ElevenLabs_2026-09-29T07_34_49_Hyuk - Encourging and Clear_pvc_sp100_s100_sb99_v4.mp3","ElevenLabs_2026-09-29T07_35_05_Hyuk - Encourging and Clear_pvc_sp100_s100_sb99_v4.mp3","ElevenLabs_2026-09-29T07_35_23_Hyuk - Encourging and Clear_pvc_sp100_s100_sb99_v4.mp3","ElevenLabs_2026-09-29T07_35_39_Hyuk - Encourging and Clear_pvc_sp100_s100_sb99_v4.mp3","ElevenLabs_2026-09-29T07_35_57_Hyuk - Encourging and Clear_pvc_sp100_s100_sb99_v4.mp3","ElevenLabs_2026-09-29T07_36_20_Hyuk - Encourging and Clear_pvc_sp100_s100_sb99_v4 - Copy.mp3","ElevenLabs_2026-09-29T07_36_20_Hyuk - Encourging and Clear_pvc_sp100_s100_sb99_v4.mp3","ElevenLabs_2026-09-29T07_36_56_Hyuk - Encourging and Clear_pvc_sp100_s100_sb99_v4.mp3","ElevenLabs_Text_to_Speech_audio (1).mp3","ElevenLabs_Text_to_Speech_audio (2).mp3","ElevenLabs_Text_to_Speech_audio (3).mp3","ElevenLabs_Text_to_Speech_audio (4).mp3","ElevenLabs_Text_to_Speech_audio (5).mp3","ElevenLabs_Text_to_Speech_audio (6).mp3","ElevenLabs_Text_to_Speech_audio (7).mp3","ElevenLabs_Text_to_Speech_audio (8).mp3","ElevenLabs_Text_to_Speech_audio (9).mp3","ElevenLabs_Text_to_Speech_audio (10).mp3","ElevenLabs_Text_to_Speech_audio (11).mp3","ElevenLabs_Text_to_Speech_audio (12).mp3","ElevenLabs_Text_to_Speech_audio (13).mp3","ElevenLabs_Text_to_Speech_audio - Copy.mp3","ElevenLabs_Text_to_Speech_audio.mp3"];
+
+const KEY='koreanDesk:labels';
+const $=s=>document.querySelector(s);
+const audio=$('#audio'),wave=$('#wave');
+const bars=[];
+for(let i=0;i<54;i++){const b=document.createElement('i');b.i=i;wave.appendChild(b);bars.push(b)}
+
+let labels={};
+try{labels=JSON.parse(localStorage.getItem(KEY)||'{}')}catch(e){labels={}}
+function saveLabels(){try{localStorage.setItem(KEY,JSON.stringify(labels))}catch(e){}}
+
+const files=FILES.map((f,i)=>({id:i,url:encodeURI(f),text:labels[i]||('Question '+(i+1))}));
+$('#pCount').textContent=files.length;
+
+let started=false,remaining=[];
+
+/* ============ START SCREEN ============ */
+function showGate(msg){
+  started=false;remaining=[];
+  audio.pause();
+  $('#stage').style.display='none';
+  $('#gate').style.display='flex';
+  $('#gateInfo').textContent=msg;
+  bars.forEach(b=>b.classList.remove('on'));
+}
+$('#gateInfo').textContent=files.length+' questions ready - each one is picked at random.';
+
+$('#startBtn').onclick=()=>{
+  remaining=files.map((_,i)=>i);
+  for(let i=remaining.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[remaining[i],remaining[j]]=[remaining[j],remaining[i]]}
+  started=true;
+  $('#gate').style.display='none';
+  $('#stage').style.display='flex';
+  open();
+};
+
+/* ============ QUESTION FLOW ============ */
+function open(){
+  if(!remaining.length){done();return}
+  const f=files[remaining.pop()];
+  $('#qText').textContent=f.text;
+  $('#qEdit').value=f.text;
+  const t=$('#qText');t.style.animation='none';void t.offsetWidth;t.style.animation='';
+  speak(f);
+}
+function done(){
+  showGate('All '+files.length+' questions are done. Press Start Interview to run another round.');
+}
+$('#nextBtn').onclick=()=>{if(started)open()};
+$('#replayBtn').onclick=()=>{audio.currentTime=0;audio.play().catch(()=>{})};
+
+let cur=null;
+$('#qEdit').oninput=e=>{
+  if(!started||cur===null)return;
+  files[cur].text=e.target.value;
+  labels[cur]=e.target.value;
+  saveLabels();
+  $('#qText').textContent=e.target.value||'-';
+};
+$('#resetBtn').onclick=()=>{
+  if(!confirm('Restore all question text back to the default names?'))return;
+  labels={};saveLabels();
+  files.forEach((f,i)=>f.text='Question '+(i+1));
+  $('#qEdit').value=files[cur]?files[cur].text:'';
+  $('#qText').textContent=files[cur]?files[cur].text:'-';
+};
+
+/* ============ VOICE ============ */
+function speak(f){
+  cur=f.id;
+  audio.src=f.url;
+  audio.loop=false;
+  audio.load();
+  bars.forEach((b,i)=>{
+    b.style.height=(14+Math.abs(Math.sin(i*.44)+Math.cos(i*.19)*.5)*26)+'%';
+    b.classList.remove('on');
+  });
+  audio.play().catch(()=>{});
+}
+audio.addEventListener('timeupdate',()=>{
+  const p=audio.duration?audio.currentTime/audio.duration:0;
+  bars.forEach(b=>b.classList.toggle('on',b.i/bars.length<=p));
+});
+audio.addEventListener('ended',()=>bars.forEach(b=>b.classList.remove('on')));
+audio.addEventListener('error',()=>{if(started)$('#qText').textContent='audio file missing'});
+
+/* ============ KEYS ============ */
+addEventListener('keydown',e=>{
+  if(document.activeElement===$('#qEdit'))return;
+  if(e.code==='Space'||e.key==='ArrowRight'){
+    e.preventDefault();
+    if(started)$('#nextBtn').click(); else $('#startBtn').click();
+  }
+  if(e.key==='KeyR'||e.key==='r')$('#replayBtn').click();
+});
+</script>
+</body>
+</html>
